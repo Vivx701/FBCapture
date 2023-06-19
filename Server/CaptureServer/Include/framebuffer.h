@@ -9,8 +9,9 @@
 
 //C++ HEADER
 #include <string>
-
-
+#include <vector>
+#include <fstream>
+#include <iterator>
 
 //EXCEPTIONS
 const std::string FBDEV_NOT_FOUND = "Failed to open fbDev file";
@@ -31,6 +32,10 @@ public:
     int linelength() const;
 
     bool isGrayScale() const;
+
+    std::vector<unsigned char> readFB();
+
+
 
 private:
     void fetchFBDetails();

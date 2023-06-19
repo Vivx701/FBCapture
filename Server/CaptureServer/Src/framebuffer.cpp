@@ -36,11 +36,19 @@ void FrameBuffer::fetchFBDetails()
     m_linelength  = fb_fixedinfo.line_length;
     m_isGrayScale = (fb_varinfo.grayscale != 0);
 
+
 }
 
 bool FrameBuffer::isGrayScale() const
 {
     return m_isGrayScale;
+}
+
+std::vector<unsigned char> FrameBuffer::readFB()
+{
+    std::ifstream fbdev(m_fbDevice, std::ios::binary);
+    std::vector<unsigned char> buffer(std::istreambuf_iterator<char>(fbdev), {});
+    return buffer;
 }
 
 int FrameBuffer::linelength() const
